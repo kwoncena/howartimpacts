@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>the things we send</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar" role="banner">
+    <div class="brand"><span class="dot"></span> delivered</div>
+    <div class="toolbar">
+      <span class="chip" id="clock" aria-live="polite">--:--</span>
+      <span class="chip">Wi-Fi ●●●</span>
+    </div>
+  </div>
+
+  <main class="desktop" id="desktop" role="application" aria-label="interactive desktop poem">
+    <!-- Icons -->
+    <div class="icon" id="icon-letter" style="left:40px; top:70px" data-window="win-letter">
+      <div class="glyph">📨</div><div class="label">Letter</div>
+    </div>
+    <div class="icon" id="icon-email" style="left:160px; top:70px" data-window="win-email">
+      <div class="glyph">✉️</div><div class="label">Email</div>
+    </div>
+    <div class="icon" id="icon-sticky" style="left:280px; top:70px" data-window="win-sticky">
+      <div class="glyph">📝</div><div class="label">Post-it</div>
+    </div>
+    <div class="icon" id="icon-package" style="left:400px; top:70px" data-window="win-package">
+      <div class="glyph">📦</div><div class="label">Package</div>
+    </div>
+    <div class="icon" id="icon-box" style="left:520px; top:70px" data-window="win-box">
+      <div class="glyph">🗃️</div><div class="label">Box</div>
+    </div>
+    <div class="icon" id="icon-postbox" style="left:640px; top:70px" data-window="win-postbox">
+      <div class="glyph">📮</div><div class="label">Postbox</div>
+    </div>
+    <div class="icon locked" id="icon-locked" style="left:760px; top:70px">
+      <div class="glyph">🔒</div><div class="label">Locked</div>
+    </div>
+
+    <!-- Poem windows -->
+    <section class="window" id="win-letter" style="left:120px; top:210px">
+      <div class="titlebar"><span class="title">letter.txt</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="txt">
+        <p><strong>t</strong>he days i mail myself to strangers — ink still breathing, edges warm from my hands.</p>
+        <p>it leaves me quietly, folded in haste, addressed to no one certain.</p>
+      </div></div>
+    </section>
+
+    <section class="window" id="win-email" style="left:300px; top:250px">
+      <div class="titlebar"><span class="title">inbox.eml</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="txt">
+        <p><strong>h</strong>ello, i sent a color. it may arrive as heartbeat.</p>
+        <p>not of grammar, but breath. sometimes late. sometimes exactly on time.</p>
+      </div></div>
+    </section>
+
+    <section class="window" id="win-sticky" style="left:520px; top:230px">
+      <div class="titlebar"><span class="title">desk-note</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="sticky">
+        <p><strong>e</strong>very crease is an address. i waited anyway.</p>
+        <p>erasures make the most honest footprints.</p>
+      </div></div>
+    </section>
+
+    <section class="window" id="win-package" style="left:200px; top:380px">
+      <div class="titlebar"><span class="title">package.manifest</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="txt">
+        <p><strong>t</strong>ravel like hope does: uncertain, creased, still moving.</p>
+        <p>the map keeps drawing itself. folds become the architecture of arrival.</p>
+      </div></div>
+    </section>
+
+    <section class="window" id="win-box" style="left:440px; top:380px">
+      <div class="titlebar"><span class="title">archive.box</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="txt">
+        <p><strong>h</strong>eld the heat and called it meaning. i read the silence as sentence.</p>
+        <p>we both became envelopes; i kept the fold to remember you.</p>
+      </div></div>
+    </section>
+
+    <section class="window" id="win-postbox" style="left:660px; top:360px">
+      <div class="titlebar"><span class="title">postbox.log</span><button class="btn" data-close>×</button></div>
+      <div class="content"><div class="txt">
+        <p><strong>i</strong>f it reaches another heart, that, too, is a reply.</p>
+        <p>movement is just faith with a body.</p>
+      </div></div>
+    </section>
+
+    <div class="dock" id="dock">
+      <div class="slot" data-index="0">1</div>
+      <div class="slot" data-index="1">2</div>
+      <div class="slot" data-index="2">3</div>
+      <div class="slot" data-index="3">4</div>
+      <div class="slot" data-index="4">5</div>
+      <div class="slot" data-index="5">6</div>
+    </div>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="card">
+      <h3>Locked</h3>
+      <p>Enter the hidden title to unlock.</p>
+      <input id="pass" type="text" placeholder="type the hidden title…" />
+      <button id="unlock" class="btn">Unlock</button>
+    </div>
+  </div>
+
+  <div class="credits" id="credits">
+    <div class="wrap">
+      <h2>Delivered</h2>
+      <p>by Cara Kwon — “the things we send”</p>
+      <div class="links">
+        <a class="pill" href="#" id="restart">↻ Go again</a>
+        <a class="pill" href="https://carakwon.cargo.site/" target="_blank">Portfolio</a>
+        <a class="pill" href="www.linkedin.com/in/cara-kwon" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
