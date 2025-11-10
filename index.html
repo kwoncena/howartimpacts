@@ -8,87 +8,415 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!--  LOGIN SCREEN (MAC-STYLE)  -->
+  <div class="login" id="login-screen" aria-label="login screen">
+    <div class="login-card">
+      <div class="login-avatar">
+        <span>CK</span>
+      </div>
+      <div class="login-name">cara kwon</div>
+      <form id="login-form" class="login-form">
+        <input
+          id="login-pass"
+          type="text"
+          autocomplete="off"
+          aria-label="Login key"
+        />
+        <button type="submit" class="btn primary login-btn">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!--  TOP BAR  -->
   <div class="topbar" role="banner">
-    <div class="brand"><span class="dot"></span> delivered</div>
+    <div class="brand"><span class="dot"></span> cara kwon</div>
     <div class="toolbar">
+      <span class="chip info-chip" id="hint-chip" aria-label="keyboard hint" tabindex="0">
+        i
+        <span class="hint-strip" id="hint-strip">
+          I’m the biggest key that makes no letter, what am I?
+        </span>
+      </span>
       <span class="chip" id="clock" aria-live="polite">--:--</span>
       <span class="chip">Wi-Fi ●●●</span>
     </div>
   </div>
 
+  <!-- HINT WINDOW (SPACEBAR RIDDLE) -->
+<section class="window" id="win-hint">
+  <div class="titlebar">
+    <span class="title">spacebar.txt</span>
+    <button class="btn" data-close>×</button>
+  </div>
+  <div class="content">
+    <div class="txt">
+      <p>I’m the biggest key that makes no letter,</p>
+      <p>creating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so sentences read better.</p>
+      <p style="margin-top: 0.8rem;">What am I?</p>
+    </div>
+  </div>
+</section>
+  <!--  DESKTOP / POEM SPACE  -->
   <main class="desktop" id="desktop" role="application" aria-label="interactive desktop poem">
-    <!-- Icons -->
-    <div class="icon" id="icon-letter" style="left:40px; top:70px" data-window="win-letter">
+   
+    <!-- Live camera background -->
+    <video id="bg-camera" autoplay muted playsinline></video>
+    <div class="desktop-overlay"></div>
+
+    <!-- analog puzzle icons (REAL pieces) -->
+    <div class="icon" id="icon-sticky" data-window="win-sticky">
+      <div class="glyph">📝</div><div class="label">Note</div>
+    </div>
+    <div class="icon" id="icon-letter" data-window="win-letter">
       <div class="glyph">📨</div><div class="label">Letter</div>
     </div>
-    <div class="icon" id="icon-email" style="left:160px; top:70px" data-window="win-email">
-      <div class="glyph">✉️</div><div class="label">Email</div>
+    <div class="icon" id="icon-email" data-window="win-postcard">
+      <div class="glyph">💌</div><div class="label">Postcard</div>
     </div>
-    <div class="icon" id="icon-sticky" style="left:280px; top:70px" data-window="win-sticky">
-      <div class="glyph">📝</div><div class="label">Post-it</div>
+    <div class="icon" id="icon-package" data-window="win-package">
+      <div class="glyph">📦</div><div class="label">Parcel</div>
     </div>
-    <div class="icon" id="icon-package" style="left:400px; top:70px" data-window="win-package">
-      <div class="glyph">📦</div><div class="label">Package</div>
-    </div>
-    <div class="icon" id="icon-box" style="left:520px; top:70px" data-window="win-box">
-      <div class="glyph">🗃️</div><div class="label">Box</div>
-    </div>
-    <div class="icon" id="icon-postbox" style="left:640px; top:70px" data-window="win-postbox">
+    <div class="icon" id="icon-postbox" data-window="win-postbox">
       <div class="glyph">📮</div><div class="label">Postbox</div>
     </div>
-    <div class="icon locked" id="icon-locked" style="left:760px; top:70px">
+    <div class="icon" id="icon-box" data-window="win-box">
+      <div class="glyph">🗃️</div><div class="label">Archive</div>
+    </div>
+
+    <!-- digital decoy icons -->
+    <div class="icon" id="icon-dm" data-window="win-dm">
+      <div class="glyph">📱</div><div class="label">DM</div>
+    </div>
+    <div class="icon" id="icon-chat" data-window="win-chat">
+      <div class="glyph">💬</div><div class="label">Chat</div>
+    </div>
+    <div class="icon" id="icon-cloud" data-window="win-cloud">
+      <div class="glyph">☁️</div><div class="label">Cloud</div>
+    </div>
+
+    <!-- locked icon (fixed top right via CSS) -->
+    <div class="icon locked" id="icon-locked">
       <div class="glyph">🔒</div><div class="label">Locked</div>
     </div>
 
-    <!-- Poem windows -->
-    <section class="window" id="win-letter" style="left:120px; top:210px">
-      <div class="titlebar"><span class="title">letter.txt</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="txt">
-        <p><strong>t</strong>he days i mail myself to strangers — ink still breathing, edges warm from my hands.</p>
-        <p>it leaves me quietly, folded in haste, addressed to no one certain.</p>
-      </div></div>
+    <!-- sticky hint as an image -->
+    <img
+      src="sticky.png"
+      alt="sticky"
+      class="hint-sticky"
+    />
+
+    <!-- WINDOWS (POEM FRAGMENTS) -->
+
+    <!-- sticky -->
+    <section class="window" id="win-sticky">
+      <div class="titlebar">
+        <span class="title">desk-note</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="sticky">
+          <p><strong>e</strong>very crease is an address for the things you didn’t send. i waited anyway.</p>
+          <p>erasures make the most honest footprints; they keep walking after we stop writing.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="window" id="win-email" style="left:300px; top:250px">
-      <div class="titlebar"><span class="title">inbox.eml</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="txt">
-        <p><strong>h</strong>ello, i sent a color. it may arrive as heartbeat.</p>
-        <p>not of grammar, but breath. sometimes late. sometimes exactly on time.</p>
-      </div></div>
+    <!-- letter -->
+    <section class="window" id="win-letter">
+      <div class="titlebar">
+        <span class="title">letter.txt</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt">
+          <p><strong>t</strong>he days i mail myself to strangers small things folded around a heartbeat, ink still breathing, edges warm from my hands.</p>
+          <p>i send that version of me quietly, folded in haste, addressed to no one certain.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="window" id="win-sticky" style="left:520px; top:230px">
-      <div class="titlebar"><span class="title">desk-note</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="sticky">
-        <p><strong>e</strong>very crease is an address. i waited anyway.</p>
-        <p>erasures make the most honest footprints.</p>
-      </div></div>
+    <!-- postcard -->
+    <section class="window" id="win-postcard">
+      <div class="titlebar">
+        <span class="title">postcard.note</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt">
+          <p><strong>h</strong>ello from the edge of somewhere. one side picture, one side confession.</p>
+          <p>postcards carry the things the camera can’t send: humidity, missed trains, your almost-answer.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="window" id="win-package" style="left:200px; top:380px">
-      <div class="titlebar"><span class="title">package.manifest</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="txt">
-        <p><strong>t</strong>ravel like hope does: uncertain, creased, still moving.</p>
-        <p>the map keeps drawing itself. folds become the architecture of arrival.</p>
-      </div></div>
+    <!-- parcel -->
+    <section class="window" id="win-package">
+      <div class="titlebar">
+        <span class="title">package.manifest</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt">
+          <p><strong>t</strong>ravel like hope does: uncertain, creased, still moving.</p>
+          <p>the map keeps drawing itself; the box remembers the things we meant to send and never quite said.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="window" id="win-box" style="left:440px; top:380px">
-      <div class="titlebar"><span class="title">archive.box</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="txt">
-        <p><strong>h</strong>eld the heat and called it meaning. i read the silence as sentence.</p>
-        <p>we both became envelopes; i kept the fold to remember you.</p>
-      </div></div>
+    <!-- postbox -->
+    <section class="window" id="win-postbox">
+      <div class="titlebar">
+        <span class="title">postbox.log</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt">
+          <p><strong>i</strong>f it reaches another heart, that, too, is a reply.</p>
+          <p>we send it forward without watching, trusting the dark slot with things we can’t carry alone.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="window" id="win-postbox" style="left:660px; top:360px">
-      <div class="titlebar"><span class="title">postbox.log</span><button class="btn" data-close>×</button></div>
-      <div class="content"><div class="txt">
-        <p><strong>i</strong>f it reaches another heart, that, too, is a reply.</p>
-        <p>movement is just faith with a body.</p>
-      </div></div>
+    <!-- archive -->
+    <section class="window" id="win-box">
+      <div class="titlebar">
+        <span class="title">archive.box</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt">
+          <p><strong>h</strong>eld the heat and called it meaning. i read the silence as sentence.</p>
+          <p>we both became envelopes; i kept the fold to remember you, and all the things we didn’t send.</p>
+        </div>
+      </div>
     </section>
 
+    <!-- DIGITAL DECOY WINDOWS WITH ASCII STYLE -->
+
+    <!-- DM -->
+    <section class="window" id="win-dm">
+      <div class="titlebar">
+        <span class="title">dm.thread</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt ascii">
+          <div>
+            [    📱    ]<br />
+            | we type and wait |<br />
+            |   for a small    |<br />
+            |    green dot     |<br />
+            '------------------'
+          </div>
+          <p>this one moves fast but leaves no paper behind.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="window" id="win-chat">
+      <div class="titlebar">
+        <span class="title">chat.log</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt ascii">
+          <div>
+            ( you )  &lt; hi<br />
+            ( them ) &lt; seen<br />
+            ( you )  &lt;    .<br />
+            ( you )  &lt;     .<br />
+            ( you )  &lt;      .
+          </div>
+          <p>bubbles rise, pop, disappear. receipts without receipts.</p>
+          <p>looks like a message, lives like a glitch. the dock won’t remember me.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cloud (with blue "the things we send") -->
+    <section class="window" id="win-cloud">
+      <div class="titlebar">
+        <span class="title">cloud.sync</span>
+        <button class="btn" data-close>×</button>
+      </div>
+      <div class="content">
+        <div class="txt ascii">
+          <div>
+            .- - - - - -.<br />
+           (   backup    )<br />
+           (   after     )<br />
+           (     backup  )<br />
+            '-----------'
+          </div>
+          <p>stored everywhere and nowhere, backed up but never stamped.</p>
+          <p>
+            somewhere in the server fog, a file is named
+            <span class="title-phrase">the things we send</span>.
+          </p>
+          <p>it knows the title, but not the weight.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- ASCII SELFIE WINDOW -->
+    <section class="window" id="win-selfie">
+    <div class="titlebar">
+      <span class="title">selfie.ascii</span>
+      <button class="btn" data-close>×</button>
+    </div>
+    <div class="content">
+      <div class="txt ascii">
+        <pre id="ascii-selfie-output">
+          press space to take an ascii selfie.
+        </pre>
+      </div>
+    </div>
+  </section>
+
+<!-- LOCKED FOLDER WINDOW -->
+<section class="window" id="win-locked">
+  <div class="titlebar">
+    <span class="title">To Gagosian Gallery.folder</span>
+    <button class="btn" data-close>×</button>
+  </div>
+
+  <div class="content">
+    <div class="locked-grid">
+      <!-- TTWS main pdf -->
+      <button class="card-link icon-card" id="open-full-poem">
+        <div class="card-emoji">📄</div>
+        <div class="card-label">T0:GG.pdf</div>
+      </button>
+
+      <!-- classified pdf () -->
+      <button class="card-link icon-card" id="open-video">
+        <div class="card-emoji">💼</div>
+        <div class="card-label">CLASSIFIED.pdf</div>
+      </button>
+    </div>
+
+    <!-- Bottom-right Send button -->
+    <button class="btn send-btn" id="send-folder">Send</button>
+  </div>
+</section>
+
+    <!-- FULL POEM LETTER WINDOW -->
+    <section class="window" id="win-poem-full">
+      <div class="titlebar">
+        <span class="title">TO:GG.pdf</span>
+        <button class="btn" data-close>×</button>
+      </div>
+
+      <div class="content poem-content">
+        <div class="pdf-scroll">
+          <div class="pdf-page">
+            <p><strong>Dear Gagosian Gallery,</strong></p>
+
+            <p>
+              The days I mail myself to strangers are still the days I believe in art.
+              I fold color into envelopes and send them to no one certain.
+              Sometimes it arrives as heartbeat,
+              Sometimes it comes back as silence.
+            </p>
+
+            <p>
+              I keep the soft things we send
+              The sketches that failed,
+              The words I almost said,
+              The pieces of light I carried in my pockets.
+              Every crease is an address,
+              Every smudge a memory of movement.
+              Hope travels even when no one stamps it.
+            </p>
+
+            <p>
+              The things we send are never just things.
+              They are traces, they are people, they are the space between us.
+              We send them because we want to be seen,
+              And to see is to remember we exist.
+            </p>
+
+            <p>...</p>
+
+            <p>
+              It spreads. it reaches. it travels.
+              It drifts between hands like wind in a hallway,
+              Soft, unseen, unstoppable.
+              It builds movements from whispers,
+              Collapses walls made of noise and doubt.
+              It opens new eras and buries old seasons.
+              It calls out the world, and when no one listens,
+              It hums beneath the floorboards still alive.
+            </p>
+
+            <p>
+              It hides. It shines. It bleeds. It heals.
+              It is a language that forgets how to translate itself.
+              It is medicine that tastes like memory,
+              A mirror that remembers your name.
+              It is both bureaucracy and rebellion,
+              A diamond and the dirt that keeps it warm.
+            </p>
+
+            <p>
+              But it is also a body.
+              It conceives us before we name ourselves.
+              It holds what we break,
+              Forgives what we leave undone.
+              It feeds on our feeling
+              And returns it changed quieter, truer.
+              It learns. it breathes. It outlasts us.
+              Love wears its patience here.
+              Strength disguises itself as softness.
+            </p>
+
+            <p>
+              It takes its time.
+              It takes time to be made.
+              It takes time to be seen.
+              It waits for hands brave enough to hold it,
+              For eyes willing to linger,
+              For hearts that listen without wanting to own.
+            </p>
+
+            <p>
+              It is taken for granted and still, it forgives.
+              It forgives the rushing,
+              The glancing,
+              The forgetting.
+              It forgives the world for not looking long enough,
+              And waits, always, to be found again.
+            </p>
+
+            <p>
+              It is the bureaucracy of emotion
+              The system that keeps the heart from collapsing.
+              It is a child and an inheritance,
+              A pulse and an afterthought,
+              Beautiful, defiant, endlessly forgiving.
+            </p>
+
+            <p>
+              It is not mine to keep.
+              It is what i send when language fails me,
+              What remains when i am gone.
+              It is the letter i keep rewriting,
+              And the gallery keeps receiving.
+            </p>
+
+            <p class="closing"><strong>Sincerely,</strong><br />Cara Kwon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- dock / puzzle -->
     <div class="dock" id="dock">
       <div class="slot" data-index="0">1</div>
       <div class="slot" data-index="1">2</div>
@@ -99,23 +427,25 @@
     </div>
   </main>
 
+  <!-- password modal for locked icon -->
   <div class="modal" id="modal">
     <div class="card">
       <h3>Locked</h3>
-      <p>Enter the hidden title to unlock.</p>
+      <p>Enter password to unlock.</p>
       <input id="pass" type="text" placeholder="type the hidden title…" />
       <button id="unlock" class="btn">Unlock</button>
     </div>
   </div>
 
+  <!-- credits / end screen -->
   <div class="credits" id="credits">
     <div class="wrap">
-      <h2>Delivered</h2>
+      <h2>Letter sent!</h2>
       <p>by Cara Kwon — “the things we send”</p>
       <div class="links">
         <a class="pill" href="#" id="restart">↻ Go again</a>
         <a class="pill" href="https://carakwon.cargo.site/" target="_blank">Portfolio</a>
-        <a class="pill" href="www.linkedin.com/in/cara-kwon" target="_blank">LinkedIn</a>
+        <a class="pill" href="https://www.linkedin.com/in/cara-kwon" target="_blank">LinkedIn</a>
       </div>
     </div>
   </div>
